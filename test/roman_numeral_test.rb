@@ -5,58 +5,22 @@ require "roman_numeral"
 
 class TestRomanNumeral < Test::Unit::TestCase
 
-   TESTS = {
-     'X' => 10,
-     'I' => 1,
-     'II' => 2,
-     'III' => 3,
-     'CCXCI' => 291
+  TESTS = {
+    'X' => 10,
+    'I' => 1,
+    'II' => 2,
+    'III' => 3,
+    'IV' => 4,
+    'VI' => 6,
+    'XIV' => 14,
+    'XXIX' => 29,
+    'CCXCI' => 291
    }
-   
-  def test_instantiantion
-    assert RomanNumeral.new('X')
+
+  TESTS.each do |roman, arabic|
+    define_method("test_convert_roman_to_arabic_#{arabic}".to_sym) do
+      roman_num = RomanNumeral.new(roman)
+      assert_equal arabic, roman_num.to_i
+    end
   end
-
-  def test_roman_to_arabic 
-    TESTS.each do | roman, arabic|
-      romnum = RomanNumeral.new(roman)
-      assert(arabic == romnum.to_i)
-    end  
-  end
-            
-  def test_converting_from_roman_to_arabic
-    romnum = RomanNumeral.new('X')
-    assert 10 == romnum.to_i
-  end
-
-  def test_converting_from_roman_to_arabic_1
-    romnum = RomanNumeral.new('I')
-    assert 1 == romnum.to_i
-  end
-    
-  def test_converting_from_roman_to_arabic_2
-    romnum = RomanNumeral.new('II')
-    assert 2 == romnum.to_i
-  end 
-
-  def test_converting_from_roman_to_arabic_6
-    romnum = RomanNumeral.new('VI')
-    assert 6 == romnum.to_i
-  end 
-
-  def test_converting_from_roman_to_arabic_4
-    romnum = RomanNumeral.new('IV')
-    assert 4 == romnum.to_i
-  end 
-  
-  def test_converting_from_roman_to_arabic_29
-    romnum = RomanNumeral.new('XXIX')
-    assert 29 == romnum.to_i
-  end 
-
-  def test_converting_from_roman_to_arabic_14
-    romnum = RomanNumeral.new('XIV')
-    assert 14 == romnum.to_i
-  end 
-  
 end
